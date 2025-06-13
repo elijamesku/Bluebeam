@@ -161,7 +161,7 @@ if (Test-Path $exe) {
 }
 ```
 
-This detection rule validates that the app has been successfully installed and can run, even though it is not registered in `Add/Remove Programs`.
+**^^** This detection rule validates that the app has been successfully installed and can run, even though it is not registered in `Add/Remove Programs`. **^^**
 
 
 ## Packaging Steps for Intune Deployment
