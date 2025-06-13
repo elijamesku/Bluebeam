@@ -62,7 +62,7 @@ Bluebeam’s official MSI and EXE installers require administrative rights and c
 3. This directory contained all necessary runtime files, including `Revu.exe`.
 4. Copied the entire contents to our `Source/Revu/` folder for packaging.
 
-This provides a self-contained executable structure that runs independently of the system registry or Program Files directories.^^
+^^This provides a self-contained executable structure that runs independently of the system registry or Program Files directories.^^
 
 
 ## Installer Script (`Install-Bluebeam.ps1`)
