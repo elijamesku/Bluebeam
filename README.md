@@ -1,32 +1,32 @@
 # Bluebeam Revu Portable Intune Deployment (User Context, No UAC) v 21.5
 
-This documentation outlines an advanced and fully automated method for deploying Bluebeam Revu as a portable application using Microsoft Intune. The deployment process bypasses administrative permissions, avoids UAC elevation, and performs the install entirely within the user’s local profile. This strategy enables seamless deployment in environments with strict privilege controls.
+This documentation outlines a fully automated method for deploying Bluebeam Revu as a portable application using Microsoft Intune. This deployment process bypasses administrative permissions, avoids UAC elevation, and performs the install entirely within the user’s local profile. This strategy enables seamless deployment in environments with strict privilege controls
 
 
 ## What Was Done (Summary)
 
-1. **Reverse-engineered an MSI-based install into a portable app**
-   I extracted `Revu.exe` and its runtime files directly from `%LOCALAPPDATA%`, avoiding any dependency on the official installer or registry keys.
+1. **Reverse-engineered an MSI-based install into a portable app**  
+   I extracted `Revu.exe` and its runtime files directly from `%LOCALAPPDATA%`, avoiding any dependency on the official installer or registry keys
 
-2. **Bypassed SYSTEM-context limitation in Intune**
-   Intune Win32 apps normally run under the SYSTEM account, which cannot access `%LOCALAPPDATA%`.
-   I solved this by wrapping the PowerShell install script in a `.cmd` launcher (`Start-Install.cmd`) to elevate into user context, effectively *tricking Intune*.
+2. **Bypassed SYSTEM-context limitation in Intune**  
+   Intune Win32 apps normally run under the SYSTEM account, which cannot access `%LOCALAPPDATA%`
+   I solved this by wrapping the PowerShell install script in a `.cmd` launcher (`Start-Install.cmd`) to elevate into user context, which was "tricking" Intune
 
 3. **Created a self-contained, user-space installation**
 
-   * No admin rights.
-   * No registry entries.
-   * No UAC prompts.
-   * Runs entirely from the user’s profile like a portable app.
+   * No admin rights
+   * No registry entries
+   * No UAC prompts
+   * Runs entirely from the user’s profile like a portable app
 
 4. **Enabled full lifecycle management through Intune**
 
-   * Custom uninstall script (`Start-Uninstall.cmd`) reverses all changes.
-   * Detection script (`Detect-Bluebeam.ps1`) ensures Intune recognizes successful installs without relying on MSI ProductCodes or system registry entries.
+   * Custom uninstall script (`Start-Uninstall.cmd`) reverses all changes
+   * Detection script (`Detect-Bluebeam.ps1`) ensures Intune recognizes successful installs without relying on MSI ProductCodes or system registry entries
 
 5. **Future-proofed for updates**
 
-   * If Bluebeam releases a new version, just drop a new `Revu.exe` into the folder and repackage.
+   * If Bluebeam releases a new version, just drop a new `Revu.exe` into the folder and repackage
    * No more tracking version numbers, GUIDs, or MSI transforms : )
 
 
@@ -51,18 +51,19 @@ BluebeamPortable/
 
 ## How I Obtained `Revu.exe`
 
-Bluebeam’s official MSI and EXE installers require administrative rights and cannot be used directly in a non-elevated Intune deployment. To create the portable install:
+Bluebeam’s official MSI and EXE installers require administrative rights and cannot be used directly in a non-elevated Intune deployment 
+To create the portable install:  
 
-1. Manually ran the **Bluebeam Revu x64 21.msi** on a test device.
+1. Manually ran the **Bluebeam Revu x64 21.msi** on a test device
 2. Once installed, navigate to the following directory:
 
    ```
    C:\Users\<username>\AppData\Local\Bluebeam\Revu\21
    ```
-3. This directory contained all necessary runtime files, including `Revu.exe`.
-4. Copied the entire contents to our `Source/Revu/` folder for packaging.
+3. This directory contains all necessary runtime files, including `Revu.exe`.
+4. Copied the entire contents to our `Source/Revu/` folder for packaging
 
-**^^** This provides a self-contained executable structure that runs independently of the system registry or Program Files directories. **^^**
+**^^** This is a self-contained executable structure that runs independently instead of the system registry or Program Files directories **^^**
 
 
 ## Installer Script (`Install-Bluebeam.ps1`)
@@ -124,7 +125,7 @@ Stop-Transcript
 
 ## Intune Context Elevation Bypass Using CMD Wrapper
 
-Microsoft Intune Win32 app deployments typically run in SYSTEM context, which cannot access user-local paths like `%LOCALAPPDATA%`. To overcome this limitation, use `cmd` wrappers to invoke the PowerShell scripts as the currently logged-in user, preserving their environment.
+Microsoft Intune Win32 app deployments typically run in SYSTEM context, which cannot access user-local paths like `%LOCALAPPDATA%`. To overcome this limitation, use `cmd` wrappers to invoke the PowerShell scripts as the currently logged-in user, preserving their environment
 
 ### Start-Install.cmd
 
@@ -187,12 +188,12 @@ IntuneWinAppUtil.exe -c "C:\BluebeamPortable\Source" -s "Start-Install.cmd" -o "
 
 ## Technical Rationale Behind This Architecture
 
-* **No elevation prompts**: Avoids interruptions by running exclusively in user-space
+* **No elevation prompts**: Avoids interruptions by running exclusively in user-space ; )
 * **Portable model**: Bluebeam runs directly from `AppData` without registration
 * **Flexible upgrades**: Simply repackaging the folder with a newer `Revu.exe` allows future deployments
 * **Detection-agnostic**: Revu is detected through path existence, not installed programs
 * **Silent install**: No user interaction or UI prompts
-* **PowerShell transcript logging**: Full transparency for troubleshooting
+* **PowerShell transcript logging**: Full logging for troubleshooting or confirming
 
 
 ## End Result
