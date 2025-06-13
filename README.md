@@ -3,6 +3,15 @@
 This documentation outlines a fully automated method for deploying Bluebeam Revu as a portable application using Microsoft Intune. This deployment process bypasses administrative permissions, avoids UAC elevation, and performs the install entirely within the user’s local profile. This strategy enables seamless deployment in environments with strict privilege controls
 
 
+```                                 
+       __        __   _                            _          _   _            ____  _____    _    ____  __  __ _____ 
+       \ \      / /__| | ___ ___  _ __ ___   ___  | |_ ___   | |_| |__   ___  |  _ \| ____|  / \  |  _ \|  \/  | ____|
+        \ \ /\ / / _ \ |/ __/ _ \| '_ ` _ \ / _ \ | __/ _ \  | __| '_ \ / _ \ | |_) |  _|   / _ \ | | | | |\/| |  _|  
+         \ V  V /  __/ | (_| (_) | | | | | |  __/ | || (_) | | |_| | | |  __/ |  _ <| |___ / ___ \| |_| | |  | | |___ 
+          \_/\_/ \___|_|\___\___/|_| |_| |_|\___|  \__\___/   \__|_| |_|\___| |_| \_\_____/_/   \_\____/|_|  |_|_____|
+                                                                                                                                                                              
+                                                                                                
+```
 ## What Was Done (Summary)
 
 1. **Reverse-engineered an MSI-based install into a portable app**  
@@ -203,4 +212,14 @@ IntuneWinAppUtil.exe -c "C:\BluebeamPortable\Source" -s "Start-Install.cmd" -o "
 * The app is easily uninstallable
 * All functionality is confined to the user context — no elevated permissions required
 
-
+   ```                                        
+             |  _ \ _____      _____ _ __ ___  __| | | |__  _   _    ___ _   _ _ __(_) ___  ___(_) |_ _   _ 
+             | |_) / _ \ \ /\ / / _ \ '__/ _ \/ _` | | '_ \| | | |  / __| | | | '__| |/ _ \/ __| | __| | | |
+             |  __/ (_) \ V  V /  __/ | |  __/ (_| | | |_) | |_| | | (__| |_| | |  | | (_) \__ \ | |_| |_| |
+             |_|   \___/_\_/\_/ \___|_|  \___|\__,_| |_.__/ \__, |  \___|\__,_|_|  |_|\___/|___/_|\__|\__, |
+                   | ____| (_)                              |___/                                     |___/ 
+              _____|  _| | | |                                                                              
+             |_____| |___| | |                                                                              
+                   |_____|_|_|                                                                              
+                                                                                                
+```
