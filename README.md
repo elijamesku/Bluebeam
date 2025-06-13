@@ -3,7 +3,7 @@
 This documentation outlines a fully automated method for deploying Bluebeam Revu as a portable application using Microsoft Intune. This deployment process bypasses administrative permissions, avoids UAC elevation, and performs the install entirely within the user’s local profile. This strategy enables seamless deployment in environments with strict privilege controls
 
 
-```                                 
+```                                
        __        __   _                            _          _   _            ____  _____    _    ____  __  __ _____ 
        \ \      / /__| | ___ ___  _ __ ___   ___  | |_ ___   | |_| |__   ___  |  _ \| ____|  / \  |  _ \|  \/  | ____|
         \ \ /\ / / _ \ |/ __/ _ \| '_ ` _ \ / _ \ | __/ _ \  | __| '_ \ / _ \ | |_) |  _|   / _ \ | | | | |\/| |  _|  
