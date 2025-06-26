@@ -79,7 +79,7 @@ To create the portable install:
 
 ```powershell
 Start-Transcript -Path "C:\ProgramData\BluebeamPortableInstall.log" -Force
-Write-Host "================ Bluebeam Revu Portable Installer ================"
+Write-Host "Bluebeam Revu Portable Installer"
 
 $sourceDir = "C:\Bluebeam\Revu\Revu"
 $targetDir = "$env:LOCALAPPDATA\Programs\Bluebeam\Revu"
@@ -110,7 +110,7 @@ Stop-Transcript
 
 ```powershell
 Start-Transcript -Path "C:\ProgramData\BluebeamPortableUninstall.log" -Force
-Write-Host "================ Uninstalling Bluebeam Revu ================"
+Write-Host "Uninstalling Bluebeam Revu "
 
 $installPath = "$env:LOCALAPPDATA\Programs\Bluebeam\Revu"
 $shortcutPath = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Bluebeam Revu.lnk"
