@@ -36,7 +36,7 @@ This documentation outlines a fully automated method for deploying Bluebeam Revu
 5. **Future-proofed for updates**
 
    * If Bluebeam releases a new version, just drop a new `Revu.exe` into the folder and repackage
-   * No more tracking version numbers, GUIDs, or MSI transforms : )
+   * No more tracking version numbers, GUIDs, or MSI transforms 
 
 
 ## Folder Structure
