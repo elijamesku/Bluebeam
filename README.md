@@ -1,6 +1,6 @@
 # Bluebeam Revu Portable Intune Deployment (User Context, No UAC) v 21.6
 
-This documentation outlines a fully automated method for deploying Bluebeam Revu as a portable application using Microsoft Intune. This deployment process bypasses administrative permissions, avoids UAC elevation, and performs the install entirely within the user’s local profile. This strategy enables seamless deployment in environments with strict privilege controls
+This documentation outlines a fully automated method for deploying Bluebeam Revu as a portable application using Microsoft Intune. This deployment process bypasses administrative permissions, avoids UAC elevation, and performs the install entirely within the user’s local profile. This strategy enables seamless deployment in environments with strict privilege controls : )
 
 
 ```                                
