@@ -210,7 +210,7 @@ IntuneWinAppUtil.exe -c "C:\BluebeamPortable\Source" -s "Start-Install.cmd" -o "
 * Intune believes the app is installed and manages it correctly
 * Bluebeam launches with full functionality
 * The app is easily uninstallable
-* All functionality is confined to the user context — no elevated permissions required
+* All functionality is confined to the user context — no elevated permissions required.
 
    ```                                        
              |  _ \ _____      _____ _ __ ___  __| | | |__  _   _    ___ _   _ _ __(_) ___  ___(_) |_ _   _ 
